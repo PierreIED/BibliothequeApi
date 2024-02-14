@@ -47,12 +47,12 @@ namespace BibliothequeApi.Services
             return await _repo.Update(entity);
         }
 
-        private bool EmpruntConditions(Emprunt entity)
+        private static bool EmpruntConditions(Emprunt entity)
         {
             return true;
         }
 
-        private bool dateEmpruntEstToday(Emprunt entity)
+        private static bool dateEmpruntEstToday(Emprunt entity)
         {
             return entity.DateEmprunt.Equals(DateOnly.FromDateTime(DateTime.Now));
         }
