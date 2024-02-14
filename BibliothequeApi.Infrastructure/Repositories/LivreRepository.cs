@@ -26,14 +26,17 @@ namespace BibliothequeApi.Repositories
 
         public async Task Delete(int id)
         {
-            Livre domaine = _context.Livres.Find(id)!;
-            _context.Livres.Remove(domaine);
+            Livre livre = _context.Livres.Find(id)!;
+            _context.Livres.Remove(livre);
             await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Livre>> GetAll()
         {
-            return await _context.Livres.ToListAsync();
+            return await _context.Livres
+                .Include(l => l.Auteur)
+                .Include(l => l.Domaine)
+                .ToListAsync();
         }
 
         public async Task<Livre?> GetById(int id)

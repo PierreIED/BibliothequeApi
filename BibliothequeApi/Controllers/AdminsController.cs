@@ -29,11 +29,11 @@ namespace BibliothequeApi.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(Admin admin)
+        public IActionResult Login(string userName, string motDePasse)
         {
             Admin? existingAdmin = DbContext.Admins.FirstOrDefault(
-                u => u.UserName == admin.UserName &&
-                u.MotDePasse == admin.MotDePasse);
+                u => u.UserName == userName &&
+                u.MotDePasse == motDePasse);
 
             if (existingAdmin == null)
                 return new UnauthorizedResult();
