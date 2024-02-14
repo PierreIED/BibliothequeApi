@@ -47,16 +47,31 @@ namespace BibliothequeApi.Services
             return await _repo.Update(entity);
         }
 
-        private static bool EmpruntConditions(Emprunt entity)
+
+        public static bool EmpruntConditions(Emprunt entity)
+
         {
-            return true;
+            if(DateEmpruntEstToday(entity))
+            {
+                return true;
+            }
+            return false;
         }
 
-        private static bool dateEmpruntEstToday(Emprunt entity)
+        public static bool DateEmpruntEstToday(Emprunt entity)
         {
             return entity.DateEmprunt.Equals(DateOnly.FromDateTime(DateTime.Now));
         }
-
+        public static bool DateEmpruntAvantDateRetour(Emprunt entity)
+        {
+            if(entity.DateRetour == null) { return false; }
+            if(entity.DateEmprunt.CompareTo(entity.DateRetour) <= 0) { return true; }
+            return false;
+        }
+        public static bool DateRetourEstToday(Emprunt entity)
+        {
+            return entity.DateRetour.Equals(DateOnly.FromDateTime(DateTime.Now));
+        }
 
     }
 }
