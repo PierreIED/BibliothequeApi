@@ -9,8 +9,8 @@ namespace BibliothequeApi
         public int Id { get; set; }
         public string Titre { get; set; }
         public int? NbPages { get; set; }
-        public Domaine Domaine { get; set; }
-        public Auteur Auteur { get; set; }
+        public Domaine? Domaine { get; set; }
+        public Auteur? Auteur { get; set; }
         [JsonIgnore]
         public List<Emprunt>? Emprunts { get; set; }
         [EnumDataType(typeof(Etat))]
