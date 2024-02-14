@@ -1,4 +1,5 @@
-﻿using BibliothequeApi.Interfaces;
+﻿using Azure.Identity;
+using BibliothequeApi.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,11 +30,12 @@ namespace BibliothequeApi.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(string userName, string motDePasse)
+        public IActionResult Login(Admin admin)
         {
+
             Admin? existingAdmin = DbContext.Admins.FirstOrDefault(
-                u => u.UserName == userName &&
-                u.MotDePasse == motDePasse);
+                u => u.UserName == admin.UserName &&
+                u.MotDePasse == admin.MotDePasse);
 
             if (existingAdmin == null)
                 return new UnauthorizedResult();

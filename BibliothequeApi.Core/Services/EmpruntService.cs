@@ -47,7 +47,9 @@ namespace BibliothequeApi.Services
             return await _repo.Update(entity);
         }
 
+
         public static bool EmpruntConditions(Emprunt entity)
+
         {
             if(DateEmpruntEstToday(entity))
             {
