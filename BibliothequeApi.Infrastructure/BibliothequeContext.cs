@@ -9,12 +9,12 @@ namespace BibliothequeApi
 {
     public class BibliothequeContext : DbContext
     {
-        public DbSet<Auteur> Auteurs { get; set; }
-        public DbSet<Lecteur> Lecteurs { get; set; }
-        public DbSet<Livre> Livres { get; set; }
-        public DbSet<Emprunt> Emprunts { get; set; }
+        public DbSet<Auteur> Auteurs  => Set<Auteur>();
+        public DbSet<Lecteur> Lecteurs => Set<Lecteur>();
+        public DbSet<Livre> Livres => Set<Livre>();
+        public DbSet<Emprunt> Emprunts => Set<Emprunt>();
         public DbSet<Adresse> Adresses { get; set; }
-        public DbSet<Domaine> Domaines { get; set; }
+        public DbSet<Domaine> Domaines => Set<Domaine>();
 
         public BibliothequeContext(DbContextOptions<BibliothequeContext> options) : base(options) { }
 

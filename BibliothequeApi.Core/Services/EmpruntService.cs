@@ -24,12 +24,7 @@ namespace BibliothequeApi.Services
 
         public async Task<bool> Delete(int id)
         {
-            if (_repo.GetById(id) == null)
-            {
-                return false;
-            }
-            await _repo.Delete(id);
-            return true;
+            return await _repo.Delete(id);
         }
 
         public async Task<IEnumerable<Emprunt>> GetAll()

@@ -24,11 +24,15 @@ namespace BibliothequeApi.Repositories
             return entity;
         }
 
-        public async Task Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             Livre livre = _context.Livres.Find(id)!;
+            if (livre==null ) {
+                return false;
+            }
             _context.Livres.Remove(livre);
             await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Livre>> GetAll()

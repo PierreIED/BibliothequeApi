@@ -24,11 +24,16 @@ namespace BibliothequeApi.Repositories
             return entity;
         }
 
-        public async Task Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            Domaine domaine = _context.Domaines.Find(id)!;
-            _context.Domaines.Remove(domaine);
+            Adresse adresse = _context.Adresses.Find(id)!;
+            if (adresse == null)
+            {
+                return false;
+            }
+            _context.Adresses.Remove(adresse);
             await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<IEnumerable<Domaine>> GetAll()

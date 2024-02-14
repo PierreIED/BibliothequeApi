@@ -11,7 +11,7 @@ namespace BibliothequeApi.Interfaces
         Task<IEnumerable<T>> GetAll();
         Task<T?> GetById(int id);
         Task<T?> Update(T entity);
-        Task Delete(int id);
+        Task<bool> Delete(int id);
         Task<T> Add(T entity);
     }
 }
