@@ -15,9 +15,11 @@ namespace BibliothequeApi.Services
         {
             _repo = repo;
         }
-        public async Task<Emprunt> Add(Emprunt entity)
+        public async Task<Emprunt?> Add(Emprunt entity)
         {
-            return await _repo.Add(entity);
+            return EmpruntConditions(entity) ? await _repo.Add(entity) : null;
+
+
         }
 
         public async Task<bool> Delete(int id)
@@ -44,5 +46,17 @@ namespace BibliothequeApi.Services
         {
             return await _repo.Update(entity);
         }
+
+        private bool EmpruntConditions(Emprunt entity)
+        {
+            return true;
+        }
+
+        private bool dateEmpruntEstToday(Emprunt entity)
+        {
+            return entity.DateEmprunt.Equals(DateOnly.FromDateTime(DateTime.Now));
+        }
+
+
     }
 }
